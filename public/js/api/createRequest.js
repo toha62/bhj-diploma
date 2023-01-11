@@ -27,11 +27,11 @@ const createRequest = (options = {}) => {
       options.callback(null, xhr.response);
       return;
     } 
-    options.callback(xhr.status + xhr.statusText, null);    
+    options.callback(new Error(xhr.status + xhr.statusText), null);    
   };  
 
   xhr.onerror = function() {
-    options.callback('Error, failed connect to host', null);    
+    options.callback(new Error('Error, failed connect to host'), null);    
   }
 
   try {

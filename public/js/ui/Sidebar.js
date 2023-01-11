@@ -8,6 +8,9 @@ class Sidebar {
    * Запускает initAuthLinks и initToggleButton
    * */
   static init() {
+    this.toggleButton = document.querySelector('.sidebar-toggle');
+    this.body = document.querySelector('body');
+
     this.initAuthLinks();
     this.initToggleButton();
   }
@@ -18,7 +21,12 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
+    this.toggleButton.addEventListener('click', (event) => {
+      event.preventDefault();
 
+      this.body.classList.toggle('sidebar-open');
+      this.body.classList.toggle('sidebar-collapse');
+    });
   }
 
   /**
