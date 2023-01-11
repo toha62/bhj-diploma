@@ -8,8 +8,11 @@ class Sidebar {
    * Запускает initAuthLinks и initToggleButton
    * */
   static init() {
-    this.toggleButton = document.querySelector('.sidebar-toggle');
     this.body = document.querySelector('body');
+    this.toggleButton = document.querySelector('.sidebar-toggle');
+    this.loginMenuItem = document.querySelector('.menu-item_login');
+    this.logoutMenuItem = document.querySelector('.menu-item_logout');
+    this.registerMenuItem = document.querySelector('.menu-item_register');
 
     this.initAuthLinks();
     this.initToggleButton();
@@ -37,6 +40,20 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
+    this.registerMenuItem.addEventListener('click', () => {
+      (App.getModal('register')).open();
+    });
 
+    this.loginMenuItem.addEventListener('click', () => {
+      (App.getModal('login')).open();
+    });
+
+    this.logoutMenuItem.addEventListener('click', () => {
+      User.logout((err, response) => {
+        if (response.success) {
+          App.setState('init');
+        }
+      });
+    });
   }
 }
