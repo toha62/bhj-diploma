@@ -60,4 +60,10 @@ class AsyncForm {
   submit() {
     this.onSubmit(this.getData());
   }
+
+  resetData() {
+    const inputsList = Array.from(this.element.querySelectorAll('input'));
+
+    inputsList.map((item) => item.value = '');
+  }
 }
