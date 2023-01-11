@@ -28,11 +28,10 @@ class Modal {
   registerEvents() {
     this.element.addEventListener('click', (event) => {
       const targetElement = event.target.closest('button');
-      if (targetElement.dataset.dismiss !== 'modal') {
-        return;
-      }
-
-      this.onClose();
+      
+      if (targetElement && targetElement.dataset.dismiss === 'modal') {
+        this.onClose();
+      }      
     });
   }
 
