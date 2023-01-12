@@ -97,7 +97,7 @@ class AccountsWidget {
    * */
   onSelectAccount( element ) {    
     this.setActive(element);
-    App.showPage( 'transactions', { account_id: +element.dataset.id });
+    App.showPage( 'transactions', { account_id: element.dataset.id });
   }
 
   setActive( element ) {

@@ -13,7 +13,8 @@ const createRequest = (options = {}) => {
     url += '?';
 
     for (key in options.data) {      
-      url += encodeURIComponent(`${key}=${options.data[key]}`) + '&';
+      url += `${key}=${options.data[key]}` + '&';
+      // url += encodeURIComponent(`${key}=${options.data[key]}`) + '&';
     }
     url.length = url.length - 1;
   } else {
