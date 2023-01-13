@@ -42,9 +42,7 @@ class CreateTransactionForm extends AsyncForm {
     data.account_id = this.element.querySelector('select').value;
 
     Transaction.create(data, (err, response) => {
-      if (response.success) {        
-        this.resetData();
-
+      if (response.success) { 
         if (this.element.matches('#new-income-form')) {
           App.getModal('newIncome').close();
         }
@@ -53,6 +51,7 @@ class CreateTransactionForm extends AsyncForm {
           App.getModal('newExpense').close();
         }
 
+        this.resetData();
         App.update(); 
       }
     });

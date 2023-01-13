@@ -64,6 +64,10 @@ class AsyncForm {
   resetData() {
     const inputsList = Array.from(this.element.querySelectorAll('input'));
 
-    inputsList.map((item) => item.value = '');
+    inputsList.map(item => {
+      if (item.type === 'text') {
+        item.value = '';
+      }
+    });
   }
 }
