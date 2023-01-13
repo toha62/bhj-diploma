@@ -41,8 +41,6 @@ class TransactionsPage {
         return;
       }
 
-      console.log(pressedButton);
-
       if (pressedButton.matches('.transaction__remove')) {
         this.removeTransaction(pressedButton.dataset.id);
       }
