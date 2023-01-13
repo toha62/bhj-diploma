@@ -44,7 +44,7 @@ class TransactionsPage {
       console.log(pressedButton);
 
       if (pressedButton.matches('.transaction__remove')) {
-        this.removeTransaction(id); // добавить ID транзакции
+        this.removeTransaction(pressedButton.dataset.id);
       }
 
       if (pressedButton.matches('.remove-account')) {
@@ -62,8 +62,7 @@ class TransactionsPage {
    * либо обновляйте только виджет со счетами и формы создания дохода и расхода
    * для обновления приложения
    * */
-  removeAccount() {
-    console.log('remove account');
+  removeAccount() {    
     if (!this.lastOptions) {
       return;
     }
@@ -73,7 +72,7 @@ class TransactionsPage {
     }
 
     Account.remove({id: this.lastOptions.account_id}, (err, response) => {
-      console.log(response);
+      // console.log(response);
       if (response.success) {
         App.updateWidgets();
         App.updateForms();
@@ -89,7 +88,16 @@ class TransactionsPage {
    * либо обновляйте текущую страницу (метод update) и виджет со счетами
    * */
   removeTransaction( id ) {
-    console.log('remove transaction');
+    if (!confirm('Вы действительно хотите удалить эту транзакцию?')) {
+      return;
+    }
+
+    Transaction.remove({id}, (err, response) => {
+      // console.log(response);
+      if (response.success) {
+        App.update();        
+      }
+    });
   }
 
   /**
