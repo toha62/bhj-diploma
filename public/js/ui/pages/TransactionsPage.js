@@ -110,20 +110,22 @@ class TransactionsPage {
     }
 
     this.lastOptions = options;
+    
     Account.get(this.lastOptions.account_id, (err, response) => {
       if (!response.success) {
         return null;
       } 
-      this.renderTitle(response.data.name);
 
-      Transaction.list({account_id: this.lastOptions.account_id}, (err, response) => {
-        if (!response.success) {
-          return null;
-        }
-        this.clearTransactions(); /// ПРОВЕРИТЬ !!!
-        this.renderTransactions(response.data);
-      });
-      
+      this.renderTitle(response.data.name);      
+    });
+
+    Transaction.list({account_id: this.lastOptions.account_id}, (err, response) => {
+      if (!response.success) {
+        return null;
+      }
+
+      this.clearTransactions(); /// ПРОВЕРИТЬ !!!
+      this.renderTransactions(response.data);
     });
   }
 
@@ -201,7 +203,8 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data){
-    data.map(item => this.element.insertAdjacentHTML('beforeend', this.getTransactionHTML(item))); 
+    const content = this.element.querySelector('.content');
+    data.map(item => content.insertAdjacentHTML('beforeend', this.getTransactionHTML(item))); 
   }
 
   clearTransactions() {    

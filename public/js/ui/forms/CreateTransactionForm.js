@@ -51,7 +51,7 @@ class CreateTransactionForm extends AsyncForm {
           App.getModal('newExpense').close();
         }
 
-        this.resetData();
+        this.element.reset();
         App.update(); 
       }
     });

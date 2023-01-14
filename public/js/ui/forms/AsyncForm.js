@@ -61,13 +61,13 @@ class AsyncForm {
     this.onSubmit(this.getData());
   }
 
-  resetData() {
-    const inputsList = Array.from(this.element.querySelectorAll('input'));
+  // resetData() {
+  //   const inputsList = Array.from(this.element.querySelectorAll('input'));
 
-    inputsList.map(item => {
-      if (item.type === 'text') {
-        item.value = '';
-      }
-    });
-  }
+  //   inputsList.map(item => {
+  //     if (item.type === 'text') {
+  //       item.value = '';
+  //     }
+  //   });
+  // }
 }

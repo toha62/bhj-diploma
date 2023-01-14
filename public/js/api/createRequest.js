@@ -23,12 +23,8 @@ const createRequest = (options = {}) => {
     }    
   }  
     
-  xhr.onload = function() {
-    if ((xhr.status / 100).toFixed(0) == 2) {
-      options.callback(null, xhr.response);
-      return;
-    } 
-    options.callback(new Error(xhr.status + xhr.statusText), null);    
+  xhr.onload = function() {    
+    options.callback(null, xhr.response);      
   };  
 
   xhr.onerror = function() {
